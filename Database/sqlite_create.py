@@ -157,6 +157,19 @@ session.add_all([o3])
 
 session.commit()
 
+##Step 3. Querying Data
+print(session.query(Customer).all())
+print(session.query(Item).all())
+print(session.query(Order).all())
+print(session.query(Customer))
+
+q = session.query(Customer)
+
+for c in q:
+    print(c.id, c.first_name)
+
+print(session.query(Customer.id, Customer.first_name).all())
+
 #import sqlite3
 
 #conn = sqlite3.connect('/web/Sqlite-Data/example.db')
