@@ -175,6 +175,10 @@ print(session.query(Customer).count()) # get the total number of records in the 
 print(session.query(Item).count())  # get the total number of records in the items table
 print(session.query(Order).count())  # get the total number of records in the orders table
 
+#first() method
+print(session.query(Customer).first())
+print(session.query(Item).first())
+print(session.query(Order).first())
 
 
 #import sqlite3
