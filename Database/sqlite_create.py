@@ -1,5 +1,5 @@
-from sqlalchemy import create_engine, MetaData, Table, Integer, String, Column, DateTime, ForeignKey, Numeric, \
-    SmallInteger, CheckConstraint
+from sqlalchemy import create_engine, MetaData, Table, Integer, String, \
+    Column, DateTime, ForeignKey, Numeric, SmallInteger, CheckConstraint, or_, and_, not_
 from sqlalchemy.ext.declarative import declarative_base
 from sqlalchemy.orm import relationship, Session
 from datetime import datetime
@@ -27,16 +27,16 @@ class Item(Base):
     __tablename__ = 'items'
     id = Column(Integer(), primary_key=True)
     name = Column(String(200), nullable=False)
-    cost_price = Column(Numeric(10, 2), nullable=False)
-    selling_price = Column(Numeric(10, 2), nullable=False)
-    quantity = Column(Integer(), nullable=False)
+    cost_price = Column(String(200), nullable=False)
+    selling_price = Column(String(200), nullable=False)
+    quantity = Column(SmallInteger(), nullable=False)
+
+    def __repr__(self):
+        return "<Item:{0}-{1}>".format(self.id, self.name)
 
     __table_args__ = (
         CheckConstraint('quantity > 0', name='quantity_check'),
     )
-
-    def __repr__(self):
-        return "<Item:{0}-{1}>".format(self.id, self.name)
 
 class Order(Base):
     __tablename__ = 'orders'
@@ -59,6 +59,7 @@ class OrderLine(Base):
 
     def __repr__(self):
         return "<OrderLine:{0}>".format(self.id)
+
 Base.metadata.create_all(engine)
 
 ##Step 1. Creating Session
@@ -154,21 +155,11 @@ o3.order_lines.append(orderline1)
 o3.order_lines.append(orderline2)
 
 session.add_all([o3])
-
 session.commit()
 
 ##Step 3. Querying Data
-print(session.query(Customer).all())
-print(session.query(Item).all())
-print(session.query(Order).all())
-print(session.query(Customer))
 
-q = session.query(Customer)
 
-for c in q:
-    print(c.id, c.first_name)
-
-print(session.query(Customer.id, Customer.first_name).all())
 
 #import sqlite3
 
