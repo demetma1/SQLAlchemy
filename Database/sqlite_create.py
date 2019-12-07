@@ -1,5 +1,5 @@
 from sqlalchemy import create_engine, MetaData, Table, Integer, String, \
-    Column, DateTime, ForeignKey, SmallInteger, CheckConstraint, or_, and_, not_
+    Column, DateTime, ForeignKey, SmallInteger, CheckConstraint, or_, and_, not_, text
 from sqlalchemy.ext.declarative import declarative_base
 from sqlalchemy.orm import relationship, Session
 from datetime import datetime
@@ -341,4 +341,8 @@ session.commit()
 print(session.query(Item).filter(Item.name.ilike("W%")).delete(synchronize_session='fetch'))
 session.commit()
 
+##Step 9. Raw Queries
+print(session.query(Customer).filter(text("first_name = 'John'")).all())
+print(session.query(Customer).filter(text("town like 'Nor%'")).all())
+print(session.query(Customer).filter(text("town like 'Nor%'")).order_by(text("first_name, id desc")).all())
 
