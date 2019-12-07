@@ -1,5 +1,5 @@
 from sqlalchemy import create_engine, MetaData, Table, Integer, String, \
-    Column, DateTime, ForeignKey, Numeric, SmallInteger, CheckConstraint, or_, and_, not_
+    Column, DateTime, ForeignKey, SmallInteger, CheckConstraint, or_, and_, not_
 from sqlalchemy.ext.declarative import declarative_base
 from sqlalchemy.orm import relationship, Session
 from datetime import datetime
@@ -180,12 +180,15 @@ print(session.query(Customer).first())
 print(session.query(Item).first())
 print(session.query(Order).first())
 
+#get()method
+print(session.query(Customer).get(1))
+print(session.query(Item).get(1))
+print(session.query(Order).get(100))
+
 
 #import sqlite3
 
 #conn = sqlite3.connect('/web/Sqlite-Data/example.db')
-
-#c = conn.cursor()
 
 #c.execute('''
  #         CREATE TABLE person
