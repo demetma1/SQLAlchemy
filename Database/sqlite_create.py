@@ -229,6 +229,10 @@ print(session.query(Item).filter(not_(Item.cost_price.between(10, 50))).all())
 
 #LIKE
 print(session.query(Item).filter(Item.name.like("%r")).all())
+print(session.query(Item).filter(Item.name.ilike("w%")).all())
+
+#NOT LIKE
+print(session.query(Item).filter(not_(Item.name.like("W%"))).all())
 #import sqlite3
 
 #conn = sqlite3.connect('/web/Sqlite-Data/example.db')
