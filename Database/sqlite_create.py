@@ -170,6 +170,13 @@ for c in q:
 session.query(Customer.id, Customer.first_name).all()
 print(session.query(Customer.id, Customer.first_name).all())
 
+#count() method
+print(session.query(Customer).count()) # get the total number of records in the customers table
+print(session.query(Item).count())  # get the total number of records in the items table
+print(session.query(Order).count())  # get the total number of records in the orders table
+
+
+
 #import sqlite3
 
 #conn = sqlite3.connect('/web/Sqlite-Data/example.db')
