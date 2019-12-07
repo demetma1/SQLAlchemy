@@ -297,6 +297,15 @@ print(session.query(
     Customer.town
 ).group_by(Customer.town).having(func.count("*") > 2).all())
 
+##Step 4. Dealing with Duplicates
+from sqlalchemy import distinct
 
+print(session.query(Customer.town).filter(Customer.id < 10).all())
+print(session.query(Customer.town).filter(Customer.id < 10).distinct().all())
+
+print(session.query(
+    func.count(distinct(Customer.town)),
+    func.count(Customer.town)
+).all())
 
 
