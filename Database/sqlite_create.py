@@ -185,6 +185,29 @@ print(session.query(Customer).get(1))
 print(session.query(Item).get(1))
 print(session.query(Order).get(100))
 
+#filter() method
+print(session.query(Customer).filter(Customer.first_name == 'John').all())
+print(session.query(Customer).filter(Customer.id <= 5, Customer.town == "Norfolk").all())
+
+## find all customers who either live in Peterbrugh or Norfolk
+print(session.query(Customer).filter(or_(
+    Customer.town == 'Peterbrugh',
+    Customer.town == 'Norfolk'
+)).all())
+
+## find all customers whose first name is John and live in Norfolk
+print(session.query(Customer).filter(and_(
+    Customer.first_name == 'John',
+    Customer.town == 'Norfolk'
+)).all())
+
+# find all johns who don't live in Peterbrugh
+print(session.query(Customer).filter(and_(
+    Customer.first_name == 'John',
+    not_(
+        Customer.town == 'Peterbrugh',
+    )
+)).all())
 
 #import sqlite3
 
