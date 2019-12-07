@@ -201,13 +201,16 @@ print(session.query(Customer).filter(and_(
     Customer.town == 'Norfolk'
 )).all())
 
-# find all johns who don't live in Peterbrugh
+## find all johns who don't live in Peterbrugh
 print(session.query(Customer).filter(and_(
     Customer.first_name == 'John',
     not_(
         Customer.town == 'Peterbrugh',
     )
 )).all())
+
+#IS NULL
+print(session.query(Order).filter(Order.date_shipped == None).all())
 
 #import sqlite3
 
