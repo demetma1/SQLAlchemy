@@ -238,6 +238,10 @@ print(session.query(Item).filter(not_(Item.name.like("W%"))).all())
 print(session.query(Customer).limit(2).all())
 print(session.query(Customer).filter(Customer.address.ilike("%avenue")).limit(2).all())
 
+#offset() method
+print(print(session.query(Customer).limit(2).offset(2)))
+
+
 #import sqlite3
 
 #conn = sqlite3.connect('/web/Sqlite-Data/example.db')
