@@ -319,8 +319,8 @@ print(session.query(
 ).all()))
 
 ##Step 6. Unions
-s1 = session.query(Item.id, Item.name).filter(Item.name.like("Wa%")))
-s2 = session.query(Item.id, Item.name).filter(Item.name.like("%e%")))
+s1 = session.query(Item.id, Item.name).filter(Item.name.like("Wa%"))
+s2 = session.query(Item.id, Item.name).filter(Item.name.like("%e%"))
 print(s1.union(s2).all())
 
 ##Step  7. Updating Data
@@ -330,6 +330,15 @@ session.add(i)
 session.commit()
 
 print(session.query(Item).filter(Item.name.ilike("W%")).update({"quantity": 60}, synchronize_session='fetch'))
+session.commit()
+
+##Step 8. Deleting Data
+i = session.query(Item).filter(Item.name == 'Monitor').one()
+print(i)
+session.delete(i)
+session.commit()
+
+print(session.query(Item).filter(Item.name.ilike("W%")).delete(synchronize_session='fetch'))
 session.commit()
 
 
