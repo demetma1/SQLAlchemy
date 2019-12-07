@@ -308,4 +308,15 @@ print(session.query(
     func.count(Customer.town)
 ).all())
 
+##Step 5. Casting
+from sqlalchemy import cast, Date, distinct, union
+
+print(session.query(
+    cast(func.pi(), Integer),
+    cast(func.pi(), String(200),
+    cast("2010-12-01", DateTime),
+    cast("2010-12-01", Date),
+).all()))
+
+
 
