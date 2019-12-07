@@ -214,6 +214,10 @@ print(session.query(Order).filter(Order.date_shipped == None).all())
 
 #IS NOT NULL
 print(session.query(Order).filter(Order.date_shipped != None).all())
+
+#IN
+print(session.query(Customer).filter(Customer.first_name.in_(['Toby', 'Sarah'])).all())
+
 #import sqlite3
 
 #conn = sqlite3.connect('/web/Sqlite-Data/example.db')
