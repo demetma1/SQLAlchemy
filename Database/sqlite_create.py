@@ -239,9 +239,14 @@ print(session.query(Customer).limit(2).all())
 print(session.query(Customer).filter(Customer.address.ilike("%avenue")).limit(2).all())
 
 #offset() method
-print(print(session.query(Customer).limit(2).offset(2)))
+print(session.query(Customer).limit(2).offset(2))
 
+#order_by()method
+print(session.query(Item).filter(Item.name.ilike("wa%")).all())
+print(session.query(Item).filter(Item.name.ilike("wa%")).order_by(Item.cost_price).all())
 
+from sqlalchemy import desc
+print(session.query(Item).filter(Item.name.ilike("wa%")).order_by(desc(Item.cost_price)).all())
 #import sqlite3
 
 #conn = sqlite3.connect('/web/Sqlite-Data/example.db')
