@@ -321,7 +321,15 @@ print(session.query(
 ##Step 6. Unions
 s1 = session.query(Item.id, Item.name).filter(Item.name.like("Wa%")))
 s2 = session.query(Item.id, Item.name).filter(Item.name.like("%e%")))
-s1.union(s2).all()
+print(s1.union(s2).all())
 
+##Step  7. Updating Data
+i = session.query(Item).get(8)
+i.selling_price = 25.91
+session.add(i)
+session.commit()
+
+print(session.query(Item).filter(Item.name.ilike("W%")).update({"quantity": 60}, synchronize_session='fetch'))
+session.commit()
 
 
